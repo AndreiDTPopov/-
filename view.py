@@ -7,7 +7,7 @@
             width=130,
             text_align="center",
             keyboard_type="number",
-            tooltip="Введите число от 6 до 20",
+            tooltip="Введите длину пароля от 6 до 20",
         )
         self.uppercase_cb = Checkbox(label="Заглавные буквы (A-Z)", value=True)
         self.lowercase_cb = Checkbox(label="Строчные буквы (a-z)", value=True)
