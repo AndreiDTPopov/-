@@ -12,7 +12,7 @@
         self.uppercase_cb = Checkbox(label="Заглавные буквы (A-Z)", value=True)
         self.lowercase_cb = Checkbox(label="Строчные буквы (a-z)", value=True)
         self.digits_cb = Checkbox(label="Цифры (0-9)", value=True)
-        self.symbols_cb = Checkbox(label="Символы (!@#$%)", value=True)
+        self.symbols_cb = Checkbox(label="Символы (!@#$%*/:;)", value=True)
         self.generate_btn = ElevatedButton("Сгенерировать", icon=icons.VPN_KEY)
         self.password_output = Text(value="", selectable=True, size=20, weight="bold", color="#0d47a1")
         self.copy_btn = IconButton(icon=icons.CONTENT_COPY, tooltip="Копировать пароль")
