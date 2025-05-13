@@ -1,25 +1,13 @@
-import string
+# model.py
 import random
-class PasswordModel:
+import string
+class Model:
     def __init__(self):
-        self.length = 12
-        self.min_length = 6
-        self.max_length = 20
-        self.use_uppercase = True
-        self.use_lowercase = True
-        self.use_digits = True
-        self.use_symbols = True
-    def generate_password(self) -> str:
-        chars = ""
-        if self.use_uppercase:
-            chars += string.ascii_uppercase
-        if self.use_lowercase:
-            chars += string.ascii_lowercase
-        if self.use_digits:
-            chars += string.digits
-        if self.use_symbols:
-            chars += string.punctuation
-        if not chars:
-            return "Ошибка: выберите хотя бы один тип символов!"
-        length = max(self.min_length, min(self.length, self.max_length))
+        self.passwords = []  # Список для хранения паролей
+    def gen_pass(self, length):
+        # Генерация пароля из букв, цифр и символов
+        chars = string.ascii_letters + string.digits + string.punctuation
         return ''.join(random.choice(chars) for _ in range(length))
+    def add_pass(self, password):
+        # Добавление пароля в список
+        self.passwords.append(password)
