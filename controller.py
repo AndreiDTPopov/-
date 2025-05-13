@@ -4,11 +4,10 @@ class Controller:
         self.model = model
         self.view = view
 
-        # Обработка изменения слайдера
         self.view.slider.on_change = self.update_length
-        # Обработка нажатия кнопки генерации
+        
         self.view.btn_gen.on_click = self.generate_password
-        # Обработка нажатия кнопки добавления
+       
         self.view.btn_add.on_click = self.add_password
 
     def update_length(self, e):
