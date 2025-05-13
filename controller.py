@@ -1,42 +1,30 @@
-from flet import SnackBar, Text
-class PasswordController:
+# controller.py
+class Controller:
     def __init__(self, model, view):
         self.model = model
         self.view = view
-        view.generate_btn.on_click = self.generate_password
-        view.copy_btn.on_click = self.copy_password
-        view.length_input.on_change = self.update_length
-        view.uppercase_cb.on_change = self.update_uppercase
-        view.lowercase_cb.on_change = self.update_lowercase
-        view.digits_cb.on_change = self.update_digits
-        view.symbols_cb.on_change = self.update_symbols
+
+        # Обработка изменения слайдера
+        self.view.slider.on_change = self.update_length
+        # Обработка нажатия кнопки генерации
+        self.view.btn_gen.on_click = self.generate_password
+        # Обработка нажатия кнопки добавления
+        self.view.btn_add.on_click = self.add_password
+
     def update_length(self, e):
-        try:
-            length = int(self.view.length_input.value)
-            length = max(self.model.min_length, min(length, self.model.max_length))
-            self.model.length = length
-            if str(length) != self.view.length_input.value:
-                self.view.length_input.value = str(length)
-                self.view.length_input.update()
-        except ValueError:
-            self.view.length_input.value = str(self.model.length)
-            self.view.length_input.update()
-def update_uppercase(self, e):
-        self.model.use_uppercase = self.view.uppercase_cb.value
-    def update_lowercase(self, e):
-        self.model.use_lowercase = self.view.lowercase_cb.value
-    def update_digits(self, e):
-        self.model.use_digits = self.view.digits_cb.value
-    def update_symbols(self, e):
-        self.model.use_symbols = self.view.symbols_cb.value
+        length = int(self.view.slider.value)
+        self.view.len_text.value = f"Длина пароля: {length}"
+        self.view.len_text.update()
+
     def generate_password(self, e):
-        password = self.model.generate_password()
-        self.view.password_output.value = password
-        self.view.password_output.update()
-    def copy_password(self, e):
-        pw = self.view.password_output.value
-        if pw and not pw.startswith("Ошибка"):
-            self.view.page.set_clipboard(pw)
-            self.view.snackbar = SnackBar(Text("Пароль скопирован!"))
-            self.view.snackbar.open = True
-            self.view.page.update()
+        length = int(self.view.slider.value)
+        password = self.model.gen_pass(length)
+        self.view.result.value = f"Ваш пароль: {password}"
+        self.view.result.update()
+
+    def add_password(self, e):
+        password = self.view.result.value.replace("Ваш пароль: ", "")
+        if password:
+            self.model.add_pass(password)
+            self.view.pass_list.controls.append(Text(password))
+            self.view.pass_list.update()
