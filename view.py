@@ -1,6 +1,6 @@
         page.window_resizable = False
         page.vertical_alignment = "start"
-        self.header = Text("🔑 Генератор паролей", size=26, weight="bold", color="#1976d2")
+        self.header = Text("Генератор паролей", size=26, weight="bold", color="#1976d2")
         self.length_input = TextField(
             label="Длина пароля (6–20)",
             value="12",
